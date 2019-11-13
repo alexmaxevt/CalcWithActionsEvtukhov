@@ -1,5 +1,6 @@
 package ru.evtukhov.android.calcwithactions;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,25 +10,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView screen;
-    private TextView buttonC;
-    private TextView buttonPlusOrMinus;
-    private TextView buttonPercent;
-    private TextView buttonDivision;
-    private TextView buttonSeven;
-    private TextView buttonEight;
-    private TextView buttonNine;
-    private TextView buttonMultiplication;
-    private TextView buttonFour;
-    private TextView buttonFive;
-    private TextView buttonSix;
-    private TextView buttonSubtraction;
-    private TextView buttonOne;
-    private TextView buttonTwo;
-    private TextView buttonThree;
-    private TextView buttonAddition;
-    private TextView buttonZero;
-    private TextView buttonDot;
-    private TextView buttonEqually;
 
     private Float num1;
     private Float num2;
@@ -41,27 +23,27 @@ public class MainActivity extends AppCompatActivity {
         initView();
     }
 
-    public void initView() {
+    private void initView() {
         screen = findViewById(R.id.screen);
-        buttonC = findViewById(R.id.clear);
-        buttonPlusOrMinus = findViewById(R.id.plusOrMinus);
-        buttonPercent = findViewById(R.id.percent);
-        buttonDivision = findViewById(R.id.division);
-        buttonSeven = findViewById(R.id.seven);
-        buttonEight = findViewById(R.id.eight);
-        buttonNine = findViewById(R.id.nine);
-        buttonMultiplication = findViewById(R.id.multiplication);
-        buttonFour = findViewById(R.id.four);
-        buttonFive = findViewById(R.id.five);
-        buttonSix = findViewById(R.id.six);
-        buttonSubtraction = findViewById(R.id.subtraction);
-        buttonOne = findViewById(R.id.one);
-        buttonTwo = findViewById(R.id.two);
-        buttonThree = findViewById(R.id.three);
-        buttonAddition = findViewById(R.id.addition);
-        buttonZero = findViewById(R.id.zero);
-        buttonDot = findViewById(R.id.dot);
-        buttonEqually = findViewById(R.id.equally);
+        TextView buttonC = findViewById(R.id.clear);
+        TextView buttonPlusOrMinus = findViewById(R.id.plusOrMinus);
+        TextView buttonPercent = findViewById(R.id.percent);
+        TextView buttonDivision = findViewById(R.id.division);
+        TextView buttonSeven = findViewById(R.id.seven);
+        TextView buttonEight = findViewById(R.id.eight);
+        TextView buttonNine = findViewById(R.id.nine);
+        TextView buttonMultiplication = findViewById(R.id.multiplication);
+        TextView buttonFour = findViewById(R.id.four);
+        TextView buttonFive = findViewById(R.id.five);
+        TextView buttonSix = findViewById(R.id.six);
+        TextView buttonSubtraction = findViewById(R.id.subtraction);
+        TextView buttonOne = findViewById(R.id.one);
+        TextView buttonTwo = findViewById(R.id.two);
+        TextView buttonThree = findViewById(R.id.three);
+        TextView buttonAddition = findViewById(R.id.addition);
+        TextView buttonZero = findViewById(R.id.zero);
+        TextView buttonDot = findViewById(R.id.dot);
+        TextView buttonEqually = findViewById(R.id.equally);
 
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,81 +59,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String notDoubleNull = screen.getText().toString();
                 if (notDoubleNull.contains(getString(R.string.app_dot))) {
-                    screen.setText(screen.getText().toString() + getString(R.string.app_zero));
+                    screen.append(getString(R.string.app_zero));
                 }
                 else {
                     if (notDoubleNull.startsWith(getString(R.string.app_zero))) {
-                        screen.setText(screen.getText().toString() + getString(R.string.app_dot));
+                        screen.append(getString(R.string.app_dot));
                     }
                     else {
-                        screen.setText(screen.getText().toString() + getString(R.string.app_zero));
+                        screen.append(getString(R.string.app_zero));
                     }
                 }
             }
         });
 
-        buttonOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_one));
-            }
-        });
-
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_two));
-            }
-        });
-
-        buttonThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_three));
-            }
-        });
-
-        buttonFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_four));
-            }
-        });
-
-        buttonFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_five));
-            }
-        });
-
-        buttonSix.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_six));
-            }
-        });
-
-        buttonSeven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_seven));
-            }
-        });
-
-        buttonEight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_eight));
-            }
-        });
-
-        buttonNine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screen.setText(screen.getText().toString() + getString(R.string.app_nine));
-            }
-        });
+        buttonOne.setOnClickListener(getCalcButtonClickListener(R.string.app_one));
+        buttonTwo.setOnClickListener(getCalcButtonClickListener(R.string.app_two));
+        buttonThree.setOnClickListener(getCalcButtonClickListener(R.string.app_three));
+        buttonFour.setOnClickListener(getCalcButtonClickListener(R.string.app_four));
+        buttonFive.setOnClickListener(getCalcButtonClickListener(R.string.app_five));
+        buttonSix.setOnClickListener(getCalcButtonClickListener(R.string.app_six));
+        buttonSeven.setOnClickListener(getCalcButtonClickListener(R.string.app_seven));
+        buttonEight.setOnClickListener(getCalcButtonClickListener(R.string.app_eight));
+        buttonNine.setOnClickListener(getCalcButtonClickListener(R.string.app_nine));
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     v.setClickable(false);
                 }
                 else {
-                    screen.setText(screen.getText().toString() + getString(R.string.app_dot));
+                    screen.append(getString(R.string.app_dot));
                 }
             }
         });
@@ -169,11 +98,14 @@ public class MainActivity extends AppCompatActivity {
         buttonPlusOrMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String plusOrMinus = screen.getText().toString();
+                String minus = getString(R.string.app_subtraction) + plusOrMinus;
+                String plus = getString(R.string.app_addition) + plusOrMinus;
                 if (Float.valueOf(screen.getText().toString()) > 0) {
-                    screen.setText(getString(R.string.app_subtraction) + screen.getText().toString());
+                    screen.setText(minus);
                 }
                 else {
-                    screen.setText(getString(R.string.app_addition) + screen.getText().toString());
+                    screen.setText(plus.substring(1));
                 }
             }
         });
@@ -258,5 +190,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private View.OnClickListener getCalcButtonClickListener(@StringRes final int numberResource) {
+        final String number = getString(numberResource);
+
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                screen.append(number);
+            }
+        };
     }
 }
